@@ -1,0 +1,53 @@
+## Flutter Web App Deployment Guide for InfinityFree
+
+This guide provides step-by-step instructions on how to deploy your Flutter web application to the InfinityFree hosting service.
+
+### Step 1: Build Your Flutter Web App
+
+First, you need to compile your Flutter project into a web-ready format. This process gathers all your Dart code and assets into a collection of HTML, CSS, and JavaScript files.
+
+1.  **Open your terminal** or command prompt.
+2.  **Navigate to your Flutter project's root directory** (the one containing `pubspec.yaml`).
+3.  **Run the build command:**
+    ```sh
+    flutter build web
+    ```
+4.  This command will create a new directory named `build/web` in your project folder. This directory contains all the static files needed for your website to run.
+
+### Step 2: Prepare for Upload
+
+The contents of the `build/web` directory are what you will upload to your web host.
+
+1.  Locate the `build/web` folder inside your project.
+2.  You can either upload the files and folders inside `build/web` directly, or you can zip them for easier upload.
+
+### Step 3: Upload to InfinityFree using FTP
+
+InfinityFree uses FTP (File Transfer Protocol) to upload website files. You will need an FTP client for this.
+
+1.  **Download an FTP Client:** If you don't have one, download and install a free FTP client like **FileZilla**.
+2.  **Get Your FTP Credentials from InfinityFree:**
+    *   Log in to your InfinityFree account.
+    *   Go to your hosting account's control panel (cPanel).
+    *   Find the "FTP Accounts" section or look for your FTP details on the main page. You will need the **FTP Hostname**, **FTP Username**, and your **Account Password**.
+3.  **Connect to Your Server with FileZilla:**
+    *   Open FileZilla.
+    *   In the "Host" field, enter your FTP Hostname (e.g., `ftpupload.net`).
+    *   Enter your FTP Username and Password.
+    *   Click "Quickconnect".
+4.  **Upload Your Files:**
+    *   Once connected, you will see your local files on the left and the server files on the right.
+    *   On the server side (right panel), navigate to the main web directory. This is usually named `htdocs`. **Do not upload your files outside of this folder.**
+    *   On your local side (left panel), navigate to your project's `build/web` directory.
+    *   Select all the files and folders inside `build/web` and drag them into the `htdocs` folder on the server side.
+    *   Wait for the file transfer to complete.
+
+### Step 4: Test Your Website
+
+Once the upload is finished, you can visit your InfinityFree domain name in your web browser. Your Flutter web application should now be live!
+
+### Important Notes on Database and Backend:
+
+*   **This deployment process is for the front-end only.** Your Flutter UI is now live, but features like user login, registration, posting comments, or processing payments require a backend and a database.
+*   **InfinityFree provides MySQL databases and PHP.** You would need to write PHP scripts to connect to your MySQL database and handle requests from your Flutter app. This is a more traditional approach.
+*   **Recommended Alternative (Supabase):** For a more modern and integrated experience with Flutter, we recommend using a Backend-as-a-Service (BaaS) like **Supabase**. Supabase provides a database, authentication, and APIs out-of-the-box, which can be directly called from your Flutter app, simplifying development significantly. I can help you set up and integrate Supabase into your project.
